@@ -14,20 +14,19 @@ function display(){
     var currentLetter = splitSelectWord[i];
   
     if(correctLetters.indexOf(currentLetter) > -1){
-    text = text + currentLetter + " ";
+      text = text + currentLetter + " ";
     }
-
 
     else{
     text = text + "_ ";
     }
 
-    }
-
-
+    } // end for loop
   document.getElementById("letters").innerHTML = text;
 } //end function display
 
+
+// display gamemon window load
 display();
 
 
@@ -37,26 +36,8 @@ document.onkeyup = function(event) {
 
   if(splitSelectWord.indexOf(userGuess) > -1){
     correctLetters.push(userGuess);
-    // console.log(correctLetters);
   }
 
-  // var text = "";  
-  // for (var i = 0; i < splitSelectWord.length; i++){
-  //   var currentLetter = splitSelectWord[i];
-  
-  //   if(correctLetters.indexOf(currentLetter) > -1){
-  //   text = text + currentLetter + " ";
-  //   }
-
-
-  //   else{
-  //   text = text + "_ ";
-  //   }
-
-  //   }
-
-
-  // document.getElementById("letters").innerHTML = text;
   display();
 
 }  //end of doconkeyup
