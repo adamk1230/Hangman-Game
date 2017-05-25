@@ -5,26 +5,59 @@
 var words = ["football", "basketball", "baseball", "soccer", "tennis", "golf"];
 var selectWord = words[Math.floor(Math.random() * words.length)];
 var splitSelectWord = selectWord.split('')
-var text = "";
-
+var correctLetters = [];
 console.log(splitSelectWord);
 
-// Print blank spaces
-for (var i = 0; i < splitSelectWord.length; i++) {
+function display(){
+  var text = "";  
+  for (var i = 0; i < splitSelectWord.length; i++){
+    var currentLetter = splitSelectWord[i];
+  
+    if(correctLetters.indexOf(currentLetter) > -1){
+    text = text + currentLetter + " ";
+    }
 
-	text = text + "_" + " ";
 
-        document.getElementById("letters").innerHTML = text;
-}
+    else{
+    text = text + "_ ";
+    }
+
+    }
+
+
+  document.getElementById("letters").innerHTML = text;
+} //end function display
+
+display();
 
 
 document.onkeyup = function(event) {
-   var userGuess = event.key;
+  
+  var userGuess = event.key;
 
-   if(splitSelectWord.indexOf(userGuess) > -1){
-    var showLetter;
-   }
+  if(splitSelectWord.indexOf(userGuess) > -1){
+    correctLetters.push(userGuess);
+    // console.log(correctLetters);
+  }
 
+  // var text = "";  
+  // for (var i = 0; i < splitSelectWord.length; i++){
+  //   var currentLetter = splitSelectWord[i];
+  
+  //   if(correctLetters.indexOf(currentLetter) > -1){
+  //   text = text + currentLetter + " ";
+  //   }
+
+
+  //   else{
+  //   text = text + "_ ";
+  //   }
+
+  //   }
+
+
+  // document.getElementById("letters").innerHTML = text;
+  display();
 
 }  //end of doconkeyup
 
