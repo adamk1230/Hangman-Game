@@ -6,12 +6,21 @@ var words = ["football", "basketball", "baseball", "soccer", "tennis", "golf"];
 var selectWord = words[Math.floor(Math.random() * words.length)];
 var splitSelectWord = selectWord.split('')
 var correctLetters = [];
-console.log(splitSelectWord);
+var incorrectLetters = [];
+var guessesLeft = 9;
+console.log(selectWord);
 
-function display(){
-  var text = "";  
+
+//Function to display the game on window load
+function display() {
+  var text = "";
+  var winCon = "";  
   for (var i = 0; i < splitSelectWord.length; i++){
     var currentLetter = splitSelectWord[i];
+
+    if(correctLetters.indexOf(currentLetter) > -1){
+      winCon = winCon + currentLetter;
+    }
   
     if(correctLetters.indexOf(currentLetter) > -1){
       text = text + currentLetter + " ";
@@ -23,6 +32,9 @@ function display(){
 
     } // end for loop
   document.getElementById("letters").innerHTML = text;
+  document.getElementById("guessedLetters").innerHTML = "Letters you have guessed: " + incorrectLetters;
+  document.getElementById("guesses").innerHTML = "You have " + guessesLeft + " left."
+  console.log(winCon);
 } //end function display
 
 
@@ -38,45 +50,37 @@ document.onkeyup = function(event) {
     correctLetters.push(userGuess);
   }
 
+  else{
+    incorrectLetters.push(userGuess);
+    console.log(incorrectLetters);
+    guessesLeft--;
+  }
+
+
+// console.log("Correct Letters Length " + correctLetters.length);
+// console.log("Split word length " + splitSelectWord.length);
+
+
   display();
+
+// if(winCon = selectWord){
+//   alert("You win!");
+// }
+
+// if(guessesLeft = 0){
+//   alert("You lose!");
+// }
+
 
 }  //end of doconkeyup
 
-
-// document.getElementById("letters").innerHTML = "<p>This is a test</p>";
-// document.getElementById("letters").innerHTML = text;
-
-
-// var selectArray = [];
-// console.log(selectWord)
-// console.log(selectWord.split(""))
-// var selectArray = selectArray.concat(selectWord.split(""));
-// console.log(selectArray);
-// selectArray.concat(selectWord.split(""));
-// selectArray.push("f");
-// selectArray.push("o");
-// console.log(selectWord);
-// console.log(selectArray);
-
-// console.log(selectArray.length);
-// for (var i = 0; i >= selectArray.length; i++) {
-// 	console.log(selectArray[i]);
-// }	
+function reset() {
+  alert("working");
+  var splitSelectWord = selectWord.split('')
+  var correctLetters = [];
+  var incorrectLetters = [];
+  var guessesLeft = 9;
+  display();
+}
 
 
-
-		// document.getElementById("letter").value = '';
-
-
-        // letters = document.getElementById("letters");
-        // letters.innerHTML = "<li class='current-word'>Current word:</li>";
-
-        // var letter, i;
-        // for (i = 0; i < currentWord.length; i++) {
-        //     letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
-        //     letters.insertAdjacentHTML('beforeend', letter);
-        // }
-
-
-
-// 
