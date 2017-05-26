@@ -8,13 +8,14 @@ var splitSelectWord = selectWord.split('')
 var correctLetters = [];
 var incorrectLetters = [];
 var guessesLeft = 9;
+var winCon;
 console.log(selectWord);
 
 
 //Function to display the game on window load
 function display() {
   var text = "";
-  var winCon = "";  
+  winCon = "";  
   for (var i = 0; i < splitSelectWord.length; i++){
     var currentLetter = splitSelectWord[i];
 
@@ -30,7 +31,7 @@ function display() {
     text = text + "_ ";
     }
 
-    } // end for loop
+  } // end for loop
   document.getElementById("letters").innerHTML = text;
   document.getElementById("guessedLetters").innerHTML = "Letters you have guessed: " + incorrectLetters;
   document.getElementById("guesses").innerHTML = "You have " + guessesLeft + " left."
@@ -62,24 +63,27 @@ document.onkeyup = function(event) {
 
 
   display();
+  // debugger
+  if(winCon === selectWord){
+    alert("You win!");
+  }
 
-// if(winCon = selectWord){
-//   alert("You win!");
-// }
-
-// if(guessesLeft = 0){
-//   alert("You lose!");
-// }
+  if(guessesLeft === 0){
+    alert("You lose!");
+  }
 
 
 }  //end of doconkeyup
 
 function reset() {
-  alert("working");
-  var splitSelectWord = selectWord.split('')
-  var correctLetters = [];
-  var incorrectLetters = [];
-  var guessesLeft = 9;
+  // alert("working");
+  var selectWord = words[Math.floor(Math.random() * words.length)];
+  splitSelectWord = selectWord.split('');
+  correctLetters = [];
+  incorrectLetters = [];
+  guessesLeft = 9;
+  text = "";
+  winCon = "";
   display();
 }
 
